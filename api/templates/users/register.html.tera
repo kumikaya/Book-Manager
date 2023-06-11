@@ -1,0 +1,21 @@
+{% extends "layout.html.tera" %}
+{% block content %}
+<div class="row">
+    <h2>注册</h2>
+    <div class="col-12">
+        <form action="/register" method="post">
+            <label for="nickname">昵称：</label>
+            <input type="text" id="nickname" name="nickname" required>
+            <br>
+            <label for="username">用户名：</label>
+            <input type="text" id="username" name="username" required>
+            <br>
+            <label for="password">密码：</label>
+            <input type="password" id="password" name="password" required>
+            <br>
+            <input type="submit" value="注册">
+        </form>
+    </div>
+    <p>已有账户？<a href="/login">点击这里登录</a></p>
+</div>
+{% endblock content %}

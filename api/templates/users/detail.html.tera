@@ -1,0 +1,32 @@
+{% extends "layout.html.tera" %}
+{% block content %}
+<div>
+    <h2>{{ user.name }}</h2>
+    <p>昵称：{{ user.nickname }}</p>
+    <p>ID：{{ user.id }}</p>
+    <p>权限组：{{ user.permission }}</p>
+    <p>注册时间：{{ user.registration_date }}</p>
+    <hr>
+    <h3>借阅的书籍</h3>
+    <table>
+        <tr>
+            <th>书名</th>
+            <th>作者</th>
+            <th>ISBN</th>
+            <th>借阅日期</th>
+            <th>应还日期</th>
+        </tr>
+        {% for borrowed_book_info in borrowed_books_info %}
+        <tr class="borrowed_book list {% if borrowed_book_info.return_date | is_overdue %} highlight {% endif %}"
+            onclick="window.location='/books/{{ borrowed_book_info.book_id }}';">
+            <td>{{ borrowed_book_info.book_name }}</td>
+            <td>{{ borrowed_book_info.book_author }}</td>
+            <td>{{ borrowed_book_info.isbn }}</td>
+            <td>{{ borrowed_book_info.borrow_date }}</td>
+            <td>{{ borrowed_book_info.return_date }}</td>
+        </tr>
+        {% endfor %}
+    </table>
+
+</div>
+{% endblock content %}

@@ -1,0 +1,42 @@
+{% extends "layout.html.tera" %}
+{% block content %}
+<div class="row">
+    <h2>发送邮件</h2>
+    <div class="col-12">
+        <div class="col-10">
+            <form action="/emails/send" method="post">
+                <label for="category">邮件类型：</label>
+                <select id="category" name="category">
+                    <option value="Regular" selected>普通邮件</option>
+                    <option value="ToAdminBroadcast">至管理员广播</option>
+                    <option value="ToUserBroadcast">至用户广播</option>
+                </select>
+                <div id="recipientContainer">
+                    <label for="recipient">收件人：</label>
+                    <input type="text" id="recipient" name="recipient"
+                        value="{% if recipient %} {{ recipient }} {% endif %}" required>
+                </div>
+                <label for="subject">主题：</label>
+                <input type="text" id="subject" name="subject" required>
+                <label for="content">正文：</label>
+                <textarea id="content" name="content" rows="15" cols="40" required></textarea>
+                <div class="col-12">
+                    <input type="submit" value="发送">
+                </div>
+            </form>
+        </div>
+    </div>
+    <script>
+        document.getElementById('category').addEventListener('change', function () {
+            var recipientInput = document.getElementById('recipient');
+            if (this.value == 'ToAdminBroadcast' || this.value == 'ToUserBroadcast') {
+                document.getElementById('recipientContainer').style.display = 'none';
+                recipientInput.removeAttribute('required');
+            } else {
+                document.getElementById('recipientContainer').style.display = 'block';
+                recipientInput.setAttribute('required', '');
+            }
+        });
+    </script>
+</div>
+{% endblock content %}

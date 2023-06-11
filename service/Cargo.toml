@@ -1,0 +1,29 @@
+[package]
+name = "book-manager-service"
+version = "0.1.0"
+edition = "2021"
+
+# See more keys and their definitions at https://doc.rust-lang.org/cargo/reference/manifest.html
+
+[dependencies]
+entity = { path = "../entity" }
+paste = "1.0"
+chrono = { version = "0.4" }
+
+[dependencies.sea-orm]
+version = "0.11"
+features = [
+    "debug-print",
+    "runtime-tokio-rustls",
+    "sqlx-sqlite",
+]
+
+[dev-dependencies]
+tokio = { version = "1.28", features = ["macros", "rt"] }
+
+[features]
+mock = ["sea-orm/mock"]
+
+[[test]]
+name = "mock"
+required-features = ["mock"]

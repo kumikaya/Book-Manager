@@ -1,0 +1,19 @@
+{% extends "layout.html.tera" %}
+{% block content %}
+<div>
+    <h2>{{ email_detail.subject }}</h2>
+    <p>邮件类型：{{ email_detail.category }}</p>
+    <p>发件人：{{ email_detail.sender_name }}</p>
+    <p>收件人：{{ email_detail.recipient_name }}</p>
+    <p>日期：{{ email_detail.date_time|date(format="%Y-%m-%d %H:%M") }}</p>
+    <hr>
+    <p>{{ email_detail.content }}</p>
+    <hr>
+    {% if user_id != email_detail.sender_id %}
+    <a href="/emails/send?recipient={{ email_detail.sender_name }}"><input type="button" value="回复" /></a>
+    {% else %}
+    <a href="/emails/send?recipient={{ email_detail.recipient_name }}"><input type="button" value="继续" /></a>
+    {% endif %}
+    <a href="/emails/delete/{{ email_detail.id }}"><input id="delete-button" type="button" value="删除" /></a>
+</div>
+{% endblock content %}

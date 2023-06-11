@@ -1,0 +1,44 @@
+{% import "macros.html.tera" as macros %}
+{% extends "layout.html.tera" %} {% block content %}
+<div class="table">
+    <h2>用户列表</h2>
+    <table>
+        <tbody>
+            <thead>
+                <tr>
+                    <th>ID</th>
+                    <th>用户名</th>
+                    <th>昵称</th>   
+                    <th>权限组</th>
+                    <th>注册时间</th>
+                    {% if user_permission == "Admin" %}
+                    <th>操作</th>
+                    {% endif %}
+                </tr>
+            </thead>
+            {% for user in users %}
+            <tr class="user list" onclick="window.location='/users/{{ user.id }}';">
+                <td>{{ user.id }}</td>
+                <td>{{ user.name }}</td>
+                <td>{{ user.nickname }}</td>
+                <td>{{ user.permission }}</td>
+                <td>{{ user.registration_date }}</td>
+                {% if user_permission == "Admin" %}
+                <td>
+                    <a class="delete" href="/users/delete/{{ user.id }}">删除</a>
+                </td>
+                {% endif %}
+            </tr>
+            {% endfor %}
+        </tbody>
+        <tfoot>
+            {{ macros::paginator(path="/users") }}
+        </tfoot>
+    </table>
+    <div class="col-12">
+        <a href="/register">
+            <input type="button" value="添加用户" />
+        </a>
+    </div>
+</div>
+{% endblock content %}

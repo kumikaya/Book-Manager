@@ -1,0 +1,48 @@
+{% import "macros.html.tera" as macros %}
+{% extends "layout.html.tera" %} {% block content %}
+<div class="table">
+    <h2>书籍列表</h2>
+    <table>
+        <tbody>
+            <thead>
+                <tr>
+                    <th>书名</th>
+                    <th>作者</th>
+                    <th>出版社</th>
+                    <th>出版年份</th>
+                    {# <th>ISBN</th> #}
+                    <th>副本数量</th>
+                    {% if user_permission == "Admin" %}
+                    <th>操作</th>
+                    {% endif %}
+                </tr>
+            </thead>
+            {% for book in books %}
+            <tr class="book list" onclick="window.location='/books/{{ book.id }}';">
+                <td>{{ book.name }}</td>
+                <td>{{ book.author }}</td>
+                <td>{{ book.publisher }}</td>
+                <td>{{ book.publish_year }}</td>
+                {# <td>{{ book.isbn }}</td> #}
+                <td>{{ book.copies }}</td>
+                {% if user_permission == "Admin" %}
+                <td>
+                    <a href="/books/edit/{{ book.id }}">编辑</a>|
+                    <a class="delete" href="/books/delete/{{ book.id }}">删除</a>
+                </td>
+                {% endif %}
+
+            </tr>
+            {% endfor %}
+        </tbody>
+        <tfoot>
+            {{ macros::paginator(path="/books") }}
+        </tfoot>
+    </table>
+    {% if user_permission == "Admin" %}
+    <a href="/books/new">
+        <input type="button" value="添加书籍" />
+    </a>
+    {% endif %}
+</div>
+{% endblock content %}

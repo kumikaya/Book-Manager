@@ -1,0 +1,28 @@
+[package]
+name = "book-manager-api"
+version = "0.1.0"
+authors = ["Sam Samai <sam@studio2pi.com.au>"]
+edition = "2021"
+publish = false
+
+[dependencies]
+book-manager-service = { path = "../service" }
+actix-files = "0.6"
+actix-http = "3"
+actix-rt = "2.8"
+actix-service = "2"
+actix-web = { version = "4", features = ["rustls"] }
+actix-session = { version = "0.7", features = ["cookie-session"] }
+tera = "1.19"
+dotenvy = "0.15"
+listenfd = "1"
+serde = "1"
+tracing-subscriber = { version = "0.3.17", features = ["env-filter"] }
+entity = { path = "../entity" }
+migration = { path = "../migration" }
+futures-util = "0.3"
+chrono = { version = "0.4" }
+bcrypt = "0.14"
+rustls = "^0.20"
+rustls-pemfile = "1.0"
+parking_lot = "0.12"

@@ -1,0 +1,38 @@
+{% import "macros.html.tera" as macros %}
+{% extends "layout.html.tera" %}
+{% block content %}
+<div class="table">
+    <h2>发件箱</h2>
+    <table>
+        <tbody>
+            <thead>
+                <tr>
+                    <th>收件人</th>
+                    <th>主题</th>
+                    <th>日期</th>
+                    <th>操作</th>
+                </tr>
+            </thead>
+
+            {% for sent_email in sent_emails %}
+            <tr class="sent_mail" onclick="window.location='/emails/{{ sent_email.id }}';">
+                <td>{{ sent_email.recipient_name }}</td>
+                <td>{{ sent_email.subject }}</td>
+                <td>{{ sent_email.date_time|date(format="%Y-%m-%d %H:%M") }}</td>
+                <td><a href="/emails/send?recipient={{ sent_email.recipient_name }}">继续</a>|
+                    <a class="delete" href="/emails/delete/{{ sent_email.id }}?source=%2Femails%2Fsent_mail">删除</a>
+                </td>
+            </tr>
+            {% endfor %}
+        </tbody>
+        <tfoot>
+            {{ macros::paginator(path="/emails/sent_email") }}
+        </tfoot>
+    </table>
+    <div class="col-12">
+        <a href="/emails/send">
+            <input type="button" value="发送新邮件" />
+        </a>
+    </div>
+</div>
+{% endblock content %}

@@ -1,0 +1,11 @@
+[package]
+name = "book-manager"
+version = "0.1.0"
+edition = "2021"
+publish = false
+
+[workspace]
+members = [".", "api", "service", "entity", "migration"]
+
+[dependencies]
+book-manager-api = { path = "api" }

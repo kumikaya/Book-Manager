@@ -1,0 +1,14 @@
+{% macro paginator(path) %}
+<tr>
+    <td></td>
+    <td>
+        {% if page == 1 %} 上一页 {% else %}
+        <a href="{{path}}?page={{ page - 1 }}&number_per_page={{ number_per_page }}">上一页</a>
+        {% endif %}|
+        {% if page == num_pages %} 下一页 {% else %}
+        <a href="{{path}}?page={{ page + 1 }}&number_per_page={{ number_per_page }}">下一页</a>
+        {% endif %}
+    </td>
+    <td></td>
+</tr>
+{% endmacro paginator %}

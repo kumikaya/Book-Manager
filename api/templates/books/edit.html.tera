@@ -1,0 +1,48 @@
+{% extends "layout.html.tera" %} {% block content %}
+<div class="row">
+    <h2>编辑书籍</h2>
+    <div class="col-12 d-flex justify-content-center">
+        <div class="col-10">
+            <form action="/books/edit/{{ book.id }}" method="post">
+                <div class="col-12">
+                    <label for="title">书名：</label>
+                    <input type="text" name="name" id="name" value="{{ book.name }}" autofocus class="u-full-width"
+                        required />
+                    <label for="author">作者：</label>
+                    <input type="text" name="author" id="author" value="{{ book.author }}" autofocus
+                        class="u-full-width" required />
+                    <label for="publisher">出版社：</label>
+                    <input type="text" name="publisher" id="publisher" value="{{ book.publisher }}" autofocus
+                        class="u-full-width" required />
+                    <label for="publish_year">出版年份：</label>
+                    <input type="date" name="publish_year" id="publish_year" value="{{ book.publish_year }}" autofocus
+                        class="u-full-width" required />
+                    <label for="isbn">ISBN：</label>
+                    <input type="text" name="isbn" id="isbn" value="{{ book.isbn }}" autofocus class="u-full-width"
+                        required />
+                    <label for="copies">副本数量：</label>
+                    <input type="number" name="copies" id="copies" value="{{ book.copies }}" autofocus
+                        class="u-full-width" required />
+                </div>
+                <div class="col-12 d-flex justify-content-start">
+                    <div class="col-2 mx-0">
+                        <a href="/books">
+                            <input type="button" value="关闭" />
+                        </a>
+                    </div>
+                    <div class="col-2">
+                        <input type="submit" value="保存" />
+                    </div>
+                </div>
+            </form>
+        </div>
+        <div class="col-2">
+            <form action="/books/delete/{{ book.id }}" method="post">
+                <div class="col-2">
+                    <input id="delete-button" type="submit" value="删除" />
+                </div>
+            </form>
+        </div>
+    </div>
+</div>
+{% endblock content %}

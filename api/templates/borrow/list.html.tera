@@ -1,0 +1,50 @@
+{% import "macros.html.tera" as macros %}
+{% extends "layout.html.tera" %} {% block content %}
+<div class="table">
+    <h2>借阅列表</h2>
+    <table>
+        <tbody>
+            <thead>
+                <tr>
+                    <th>用户</th>
+                    <th>书名</th>
+                    <th>ISBN</th>
+                    <th>借阅时间</th>
+                    {# <th>ISBN</th> #}
+                    <th>返还时间</th>
+                    {% if user_permission == "Admin" %}
+                    <th>操作</th>
+                    {% endif %}
+                </tr>
+            </thead>
+            {% for borrowed_book in borrowed_books %}
+            <tr class="borrowed_book list">
+                <td>{{ borrowed_book.user_nickname }}({{ borrowed_book.user_name }})</td>
+                <td>{{ borrowed_book.book_name }}</td>
+                <td>{{ borrowed_book.isbn }}</td>
+                <td>{{ borrowed_book.borrow_date }}</td>
+                {# <td>{{ book.isbn }}</td> #}
+                <td>{{ borrowed_book.return_date }}</td>
+                {% if user_permission == "Admin" %}
+                <td>
+                    <a href="/borrow/edit/{{ borrowed_book.borrow_id }}">编辑</a>|
+                    <a class="delete" href="/borrow/delete/{{ borrowed_book.borrow_id }}">删除</a>
+                </td>
+                {% endif %}
+
+            </tr>
+            {% endfor %}
+        </tbody>
+        <tfoot>
+            {{ macros::paginator(path="/borrow") }}
+        </tfoot>
+    </table>
+    {# {% if is_admin %}
+    <div class="col-12">
+        <a href="/borrow/new">
+            <input type="button" value="添加借阅" />
+        </a>
+    </div>
+    {% endif %} #}
+</div>
+{% endblock content %}
