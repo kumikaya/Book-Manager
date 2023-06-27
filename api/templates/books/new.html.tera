@@ -1,37 +1,36 @@
 {% extends "layout.html.tera" %} {% block content %}
-<div class="row">
+<div>
     <h2>添加书籍</h2>
-    <div class="col-12">
-        <div class="col-10">
-            <form action="/books/new" method="post">
-                <div class="col-12">
-                    <label for="title">书名：</label>
-                    <input type="text" name="name" id="name" value="" autofocus class="u-full-width" required />
-                    <label for="author">作者：</label>
-                    <input type="text" name="author" id="author" value="" autofocus class="u-full-width" required />
-                    <label for="publisher">出版社：</label>
-                    <input type="text" name="publisher" id="publisher" value="" autofocus class="u-full-width"
-                        required />
-                    <label for="publish_year">出版年份：</label>
-                    <input type="date" name="publish_year" id="publish_year" value="" autofocus class="u-full-width"
-                        required />
-                    <label for="isbn">ISBN：</label>
-                    <input type="text" name="isbn" id="isbn" value="" autofocus class="u-full-width" required />
-                    <label for="copies">副本数量：</label>
-                    <input type="number" name="copies" id="copies" value="" autofocus class="u-full-width" required />
-                </div>
-                <div class="col-12 d-flex justify-content-start">
-                    <div class="col-2 mx-0">
-                        <a href="/books">
-                            <input type="button" value="关闭" />
-                        </a>
-                    </div>
-                    <div class="col-2">
-                        <input type="submit" value="保存" />
-                    </div>
-                </div>
-            </form>
+    <hr>
+    <form action="/books/new" method="post">
+        <div class="mb-3">
+            <label for="title" class="form-label">书名：</label>
+            <input type="text" name="name" id="name" value="" autofocus class="form-control" required />
         </div>
-    </div>
+        <div class="mb-3">
+            <label for="author" class="form-label">作者：</label>
+            <input type="text" name="author" id="author" value="" autofocus class="form-control" required />
+        </div>
+        <div class="mb-3">
+            <label for="publisher" class="form-label">出版社：</label>
+            <input type="text" name="publisher" id="publisher" value="" autofocus class="form-control" required />
+        </div>
+        <div class="mb-3">
+            <label for="publish_year" class="form-label">出版年份：</label>
+            <input type="date" name="publish_year" id="publish_year" value="" autofocus class="form-control" required />
+        </div>
+        <div class="mb-3">
+            <label for="isbn" class="form-label">ISBN：</label>
+            <input type="text" name="isbn" id="isbn" value="" autofocus class="form-control" required />
+        </div>
+        <div class="mb-3">
+            <label for="copies" class="form-label">副本数量：</label>
+            <input type="number" name="copies" id="copies" value="" autofocus class="form-control" required />
+        </div>
+        <div class="d-flex justify-content-start">
+            <input type="submit" class="btn btn-outline-primary col-1 mx-2" value="保存" />
+            <a href="/books" class="btn btn-outline-secondary col-1 mx-2">关闭</a>
+        </div>
+    </form>
 </div>
 {% endblock content %}

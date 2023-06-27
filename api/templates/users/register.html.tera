@@ -1,21 +1,25 @@
 {% extends "layout.html.tera" %}
 {% block content %}
-<div class="row">
+<div>
     <h2>注册</h2>
-    <div class="col-12">
+    <hr>
+    <div class="col-4">
         <form action="/register" method="post">
-            <label for="nickname">昵称：</label>
-            <input type="text" id="nickname" name="nickname" required>
-            <br>
-            <label for="username">用户名：</label>
-            <input type="text" id="username" name="username" required>
-            <br>
-            <label for="password">密码：</label>
-            <input type="password" id="password" name="password" required>
-            <br>
-            <input type="submit" value="注册">
+            <div class="mb-3">
+                <label for="nickname" class="form-label">昵称：</label>
+                <input type="text" id="nickname" name="nickname" class="form-control" required>
+            </div>
+            <div class="mb-3">
+                <label for="username" class="form-label">用户名：</label>
+                <input type="text" id="username" name="username" class="form-control" required>
+            </div>
+            <div class="mb-3">
+                <label for="password" class="form-label">密码：</label>
+                <input type="password" id="password" name="password" class="form-control" required>
+            </div>
+            <input type="submit" class="btn btn-outline-primary col-3" value="注册">
+            <span>已有账户？<a href="/login">点击这里登录</a></span>
         </form>
     </div>
-    <p>已有账户？<a href="/login">点击这里登录</a></p>
 </div>
 {% endblock content %}

@@ -10,7 +10,8 @@
 
     <link href="//fonts.googleapis.com/css?family=Raleway:400,300,600" rel="stylesheet" type="text/css" />
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css">
-    <link rel="stylesheet" href="/static/css/skeleton.css" />
+    {#
+    <link rel="stylesheet" href="/static/css/skeleton.css" /> #}
     <link rel="stylesheet" href="/static/css/style.css" />
     <link rel="icon" type="image/png" href="/static/images/favicon.png" />
 
@@ -18,26 +19,54 @@
 </head>
 
 <body>
-    <nav class="navbar">
-        {% if user_permission and user_permission == "Admin" %}
-        <a class="reload" href="/control/reload_templates">RELOAD</a>
-        {% endif %}
-        {% if user_id %}
-        <a href="/">首页</a>
-        <a href="/search">搜索</a>
-        <a href="/books">书籍</a>
-        {% if user_permission and user_permission == "Admin" %}
-        <a href="/users">用户列表</a>
-        <a href="/borrow">借阅列表</a>
-        {% endif %}
-        <a href="/emails">收件箱</a>
-        <a href="/emails/sent_mail">发件箱</a>
-        <a href="/users/{{ user_id }}">{{ user_nickname }}({{ user_name }})</a>
-        <a href="/logout">登出</a>
-        {% else %}
-        <a href="/login">登录</a>
-        <a href="/register">注册</a>
-        {% endif %}
+    <nav class="navbar navbar-expand-lg navbar-light bg-light">
+        <div class="container-fluid">
+            <a class="navbar-brand" href="/">图书管理系统</a>
+            <div class="justify-content-end">
+                <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+                    {% if user_permission and user_permission == "Admin" %}
+                    <li class="nav-item">
+                        <a class="nav-link" href="/control/reload_templates">RELOAD</a>
+                    </li>
+                    {% endif %}
+                    {% if user_id %}
+                    <li class="nav-item">
+                        <a class="nav-link" href="/search">搜索</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="/books">书籍</a>
+                    </li>
+                    {% if user_permission and user_permission == "Admin" %}
+                    <li class="nav-item">
+                        <a class="nav-link" href="/users">用户列表</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="/borrow">借阅列表</a>
+                    </li>
+                    {% endif %}
+                    <li class="nav-item">
+                        <a class="nav-link" href="/emails">收件箱</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="/emails/sent_mail">发件箱</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="/users/{{ user_id }}">{{ user_nickname }}({{ user_name }})</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="/logout">登出</a>
+                    </li>
+                    {% else %}
+                    <li class="nav-item">
+                        <a class="nav-link" href="/login">登录</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="/register">注册</a>
+                    </li>
+                    {% endif %}
+                </ul>
+            </div>
+        </div>
     </nav>
     {% if flash %}
     <div class="flash-container">
@@ -47,6 +76,7 @@
     </div>
     {% endif %}
     <div class="container">
+        <br>
         {% block content %}{% endblock content %}
     </div>
 

@@ -3,17 +3,16 @@
 <div>
     <h2>搜索</h2>
     <hr>
-    <div class="col-12">
-        <form class="d-flex justify-content-center" action="/search/s" method="get">
-            <select class="col-1 mx-2" name="search_type">
-                <option value="books">图书</option>
-                <option value="users">用户</option>
-            </select>
-            <input class="col-6 mx-2" type="search" placeholder="搜索关键词" aria-label="搜索关键词" name="keyword">
-            <button class="col-2 mx-2" type="submit">搜索</button>
-        </form>
-    </div>
-    {# <hr>
+    <form class="d-flex justify-content-center" action="/search/s" method="get">
+        <select class="px-4 form-select mx-2" name="search_type">
+            <option value="books">图书</option>
+            <option value="users">用户</option>
+        </select>
+        <input class="col-6 mx-2 form-control" type="search" placeholder="搜索关键词" aria-label="搜索关键词" name="keyword">
+        <button class="col-2 mx-2 btn btn-outline-primary" type="submit">搜索</button>
+    </form>
+    {#
+    <hr>
     {% if result_type %}
     <div class="col-12">
         {% if result_type == "books" %}

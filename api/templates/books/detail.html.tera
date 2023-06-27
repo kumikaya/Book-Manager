@@ -2,51 +2,66 @@
 {% block content %}
 <div>
     <h2>{{ book.name }}</h2>
-    <p>作者：{{ book.author }}</p>
-    <p>出版社：{{ book.publisher }}</p>
-    <p>出版年份：{{ book.publish_year }}</p>
-    <p>ISBN：{{ book.isbn }}</p>
-    <p>副本数量：{{ book.copies }}</p>
+    <hr>
+    <p><strong>作者：</strong>{{ book.author }}</p>
+    <p><strong>出版社：</strong>{{ book.publisher }}</p>
+    <p><strong>出版年份：</strong>{{ book.publish_year }}</p>
+    <p><strong>ISBN：</strong>{{ book.isbn }}</p>
+    <p><strong>副本数量：</strong>{{ book.copies }}</p>
     <hr>
     <h3>借阅详情</h3>
-    <table>
-        <tr>
-            <th>借阅日期</th>
-            <th>归还日期</th>
-            {% if user_permission == "Admin" %}
-            <th>用户</th>
-            <th>操作</th>
-            {% endif %}
-        </tr>
-        {% for borrowed_book in borrowed_books %}
-        <tr class="borrowed_book list">
-            <td>{{ borrowed_book.borrow_date }}</td>
-            <td>{{ borrowed_book.return_date }}</td>
-            {% if user_permission == "Admin" %}
-            <td>{{ borrowed_book.user_nickname }}({{ borrowed_book.user_name }})</td>
-            <td><a href="/borrow/edit/{{ borrowed_book.borrow_id }}">编辑</a>|
-                <a class="delete" href="/borrow/delete/{{ borrowed_book.borrow_id }}">删除</a>
-            </td>
-            {% endif %}
-        </tr>
-        {% endfor %}
+    <table class="table table-hover">
+        <tbody>
+            <thead>
+                <tr>
+                    <th>借阅日期</th>
+                    <th>归还日期</th>
+                    {% if user_permission == "Admin" %}
+                    <th>用户</th>
+                    <th>操作</th>
+                    {% endif %}
+                </tr>
+            </thead>
+
+            {% for borrowed_book in borrowed_books %}
+            <tr class="borrowed_book list">
+                <td>{{ borrowed_book.borrow_date }}</td>
+                <td>{{ borrowed_book.return_date }}</td>
+                {% if user_permission == "Admin" %}
+                <td>{{ borrowed_book.user_nickname }}({{ borrowed_book.user_name }})</td>
+                <td><a class="mx-1" href="/borrow/edit/{{ borrowed_book.borrow_id }}">编辑</a>
+                    <a class="delete" href="/borrow/delete/{{ borrowed_book.borrow_id }}">删除</a>
+                </td>
+                {% endif %}
+            </tr>
+            {% endfor %}
+        </tbody>
+
     </table>
     <hr>
     <h3>借阅书籍</h3>
-    {% if user_permission == "Admin" %}
-    <form action="/borrow/{{ book.id }}" method="post">
-        <label for="user_name">用户名：</label>
-        <input type="text" id="user_name" name="user_name" value="" required>
-        <label for="return_date">返还时间：</label>
-        <input type="date" id="return_date" name="return_date" value="{{ date }}" required>
-        <input type="submit" value="添加借阅">
-    </form>
-    {% else %}
-    <form action="/borrow/request/{{ book.id }}" method="post">
-        <label for="return_date">返还时间：</label>
-        <input type="date" id="return_date" name="return_date" value="{{ date }}" required>
-        <input type="submit" value="申请借阅">
-    </form>
-    {% endif %}
+    <div class="col-4">
+        {% if user_permission == "Admin" %}
+        <form action="/borrow/{{ book.id }}" method="post">
+            <div class="mb-3">
+                <label for="user_name" class="form-label">用户名：</label>
+                <input type="text" id="user_name" name="user_name" value="" class="form-control" required>
+            </div>
+            <div class="mb-3">
+                <label for="return_date" class="form-label">返还时间：</label>
+                <input type="date" id="return_date" name="return_date" value="{{ date }}" class="form-control" required>
+            </div>
+            <input type="submit" class="btn btn-outline-primary" value="添加借阅">
+        </form>
+        {% else %}
+        <form action="/borrow/request/{{ book.id }}" method="post">
+            <div class="mb-3">
+                <label for="return_date" class="form-label">返还时间：</label>
+                <input type="date" id="return_date" name="return_date" value="{{ date }}" class="form-control" required>
+            </div>
+            <input type="submit" class="btn btn-outline-primary" value="申请借阅">
+        </form>
+        {% endif %}
+    </div>
 </div>
 {% endblock content %}

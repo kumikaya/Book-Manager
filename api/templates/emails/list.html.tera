@@ -1,9 +1,9 @@
 {% import "macros.html.tera" as macros %}
 {% extends "layout.html.tera" %}
 {% block content %}
-<div class="table">
+<div>
     <h2>收件箱</h2>
-    <table>
+    <table class="table table-hover">
         <tbody>
             <thead>
                 <tr>
@@ -18,7 +18,7 @@
                 <td>{{ email.sender_name }}</td>
                 <td>{{ email.subject }}</td>
                 <td>{{ email.date_time|date(format="%Y-%m-%d %H:%M") }}</td>
-                <td><a href="/emails/send?recipient={{ email.sender_name }}">回复</a>|
+                <td><a class="mx-1" href="/emails/send?recipient={{ email.sender_name }}">回复</a>
                     <a class="delete" href="/emails/delete/{{ email.id }}">删除</a>
                 </td>
             </tr>
@@ -28,10 +28,6 @@
             {{ macros::paginator(path="/emails") }}
         </tfoot>
     </table>
-    <div class="col-12">
-        <a href="/emails/send">
-            <input type="button" value="发送新邮件" />
-        </a>
-    </div>
+    <a href="/emails/send" class="btn btn-outline-primary">发送新邮件</a>
 </div>
 {% endblock content %}

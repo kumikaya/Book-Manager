@@ -2,30 +2,44 @@
 {% block content %}
 <div>
     <h2>{{ user.name }}</h2>
-    <p>昵称：{{ user.nickname }}</p>
-    <p>ID：{{ user.id }}</p>
-    <p>权限组：{{ user.permission }}</p>
-    <p>注册时间：{{ user.registration_date }}</p>
+    <hr>
+    <p><strong>昵称：</strong>{{ user.nickname }}</p>
+    <p><strong>ID：</strong>{{ user.id }}</p>
+    <p><strong>权限组：</strong>{{ user.permission }}</p>
+    <p><strong>注册时间：</strong>{{ user.registration_date }}</p>
     <hr>
     <h3>借阅的书籍</h3>
-    <table>
-        <tr>
-            <th>书名</th>
-            <th>作者</th>
-            <th>ISBN</th>
-            <th>借阅日期</th>
-            <th>应还日期</th>
-        </tr>
-        {% for borrowed_book_info in borrowed_books_info %}
-        <tr class="borrowed_book list {% if borrowed_book_info.return_date | is_overdue %} highlight {% endif %}"
-            onclick="window.location='/books/{{ borrowed_book_info.book_id }}';">
-            <td>{{ borrowed_book_info.book_name }}</td>
-            <td>{{ borrowed_book_info.book_author }}</td>
-            <td>{{ borrowed_book_info.isbn }}</td>
-            <td>{{ borrowed_book_info.borrow_date }}</td>
-            <td>{{ borrowed_book_info.return_date }}</td>
-        </tr>
-        {% endfor %}
+    <table class="table table-hover">
+        <tbody>
+            <thead>
+                <tr>
+                    <th>书名</th>
+                    <th>作者</th>
+                    <th>ISBN</th>
+                    <th>借阅日期</th>
+                    <th>应还日期</th>
+                    {% if user_permission == "Admin" %}
+                    <th>操作</th>
+                    {% endif %}
+                </tr>
+            </thead>
+
+            {% for borrowed_book_info in borrowed_books_info %}
+            <tr class="borrowed_book list {% if borrowed_book_info.return_date | is_overdue %} highlight {% endif %}"
+                onclick="window.location='/books/{{ borrowed_book_info.book_id }}';">
+                <td>{{ borrowed_book_info.book_name }}</td>
+                <td>{{ borrowed_book_info.book_author }}</td>
+                <td>{{ borrowed_book_info.isbn }}</td>
+                <td>{{ borrowed_book_info.borrow_date }}</td>
+                <td>{{ borrowed_book_info.return_date }}</td>
+                {% if user_permission == "Admin" %}
+                <td><a class="mx-1" href="/borrow/edit/{{ borrowed_book_info.borrow_id }}">编辑</a>
+                    <a class="delete" href="/borrow/delete/{{ borrowed_book_info.borrow_id }}">删除</a>
+                </td>
+                {% endif %}
+            </tr>
+            {% endfor %}
+        </tbody>
     </table>
 
 </div>

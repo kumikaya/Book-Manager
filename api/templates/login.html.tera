@@ -2,17 +2,20 @@
 {% block content %}
 <div>
     <h2>登录</h2>
-    <div class="col-12">
+    <hr>
+    <div class="col-4">
         <form action="/login" method="post">
-            <label for="username">用户名：</label>
-            <input type="text" id="username" name="username" required>
-            <br>
-            <label for="password">密码：</label>
-            <input type="password" id="password" name="password" required>
-            <br>
-            <input type="submit" value="登录">
+            <div class="mb-3">
+                <label for="username" class="form-label">用户名：</label>
+                <input type="text" id="username" name="username" class="form-control" required>
+            </div>
+            <div class="mb-3">
+                <label for="password" class="form-label">密码：</label>
+                <input type="password" id="password" name="password" class="form-control" required>
+            </div>
+            <input type="submit" class="btn btn-outline-primary col-3" value="登录">
+            <span>还没有账户？<a href="/register">点击这里注册</a></span>
         </form>
     </div>
-    <p>还没有账户？<a href="/register">点击这里注册</a></p>
 </div>
 {% endblock content %}

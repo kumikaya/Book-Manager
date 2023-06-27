@@ -1,8 +1,8 @@
 {% import "macros.html.tera" as macros %}
 {% extends "layout.html.tera" %} {% block content %}
-<div class="table">
+<div>
     <h2>用户列表</h2>
-    <table>
+    <table class="table table-hover">
         <tbody>
             <thead>
                 <tr>
@@ -35,10 +35,6 @@
             {{ macros::paginator(path="/users") }}
         </tfoot>
     </table>
-    <div class="col-12">
-        <a href="/register">
-            <input type="button" value="添加用户" />
-        </a>
-    </div>
+    <a href="/register" class="btn btn-outline-primary">添加用户</a>
 </div>
 {% endblock content %}

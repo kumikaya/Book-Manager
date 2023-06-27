@@ -1,8 +1,8 @@
 {% import "macros.html.tera" as macros %}
 {% extends "layout.html.tera" %} {% block content %}
-<div class="table">
+<div>
     <h2>书籍列表</h2>
-    <table>
+    <table class="table table-hover">
         <tbody>
             <thead>
                 <tr>
@@ -27,7 +27,7 @@
                 <td>{{ book.copies }}</td>
                 {% if user_permission == "Admin" %}
                 <td>
-                    <a href="/books/edit/{{ book.id }}">编辑</a>|
+                    <a class="mx-1" href="/books/edit/{{ book.id }}">编辑</a>
                     <a class="delete" href="/books/delete/{{ book.id }}">删除</a>
                 </td>
                 {% endif %}
@@ -41,7 +41,7 @@
     </table>
     {% if user_permission == "Admin" %}
     <a href="/books/new">
-        <input type="button" value="添加书籍" />
+        <button class="btn btn-outline-primary">添加书籍</button>
     </a>
     {% endif %}
 </div>

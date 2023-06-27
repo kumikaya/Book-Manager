@@ -1,31 +1,33 @@
 {% extends "layout.html.tera" %}
 {% block content %}
-<div class="row">
+<div>
     <h2>发送邮件</h2>
-    <div class="col-12">
-        <div class="col-10">
-            <form action="/emails/send" method="post">
-                <label for="category">邮件类型：</label>
-                <select id="category" name="category">
-                    <option value="Regular" selected>普通邮件</option>
-                    <option value="ToAdminBroadcast">至管理员广播</option>
-                    <option value="ToUserBroadcast">至用户广播</option>
-                </select>
-                <div id="recipientContainer">
-                    <label for="recipient">收件人：</label>
-                    <input type="text" id="recipient" name="recipient"
-                        value="{% if recipient %} {{ recipient }} {% endif %}" required>
-                </div>
-                <label for="subject">主题：</label>
-                <input type="text" id="subject" name="subject" required>
-                <label for="content">正文：</label>
-                <textarea id="content" name="content" rows="15" cols="40" required></textarea>
-                <div class="col-12">
-                    <input type="submit" value="发送">
-                </div>
-            </form>
+    <hr>
+    <form action="/emails/send" method="post">
+        <div class="mb-3">
+            <label for="category" class="form-label">邮件类型：</label>
+            <select id="category" name="category" class="form-control col-2">
+                <option value="Regular" selected>普通邮件</option>
+                <option value="ToAdminBroadcast">至管理员广播</option>
+                <option value="ToUserBroadcast">至用户广播</option>
+            </select>
         </div>
-    </div>
+        <div class="mb-3">
+            <label for="recipient" class="form-label">收件人：</label>
+            <input type="text" id="recipient" name="recipient" value="{% if recipient %} {{ recipient }} {% endif %}"
+                class="form-control col-3" required>
+        </div>
+        <div class="mb-3">
+            <label for="subject" class="form-label">主题：</label>
+            <input type="text" id="subject" name="subject" class="form-control col-3" required>
+        </div>
+        <div class="mb-3">
+            <label for="content" class="form-label">正文：</label>
+            <textarea id="content" name="content" rows="8" class="form-control col-6" required></textarea>
+        </div>
+        <input type="submit" class="btn btn-outline-primary col-1 mx-2" value="发送" />
+
+    </form>
     <script>
         document.getElementById('category').addEventListener('change', function () {
             var recipientInput = document.getElementById('recipient');

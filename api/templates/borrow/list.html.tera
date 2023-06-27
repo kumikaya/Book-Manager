@@ -1,8 +1,8 @@
 {% import "macros.html.tera" as macros %}
 {% extends "layout.html.tera" %} {% block content %}
-<div class="table">
+<div>
     <h2>借阅列表</h2>
-    <table>
+    <table class="table table-hover">
         <tbody>
             <thead>
                 <tr>
@@ -27,7 +27,7 @@
                 <td>{{ borrowed_book.return_date }}</td>
                 {% if user_permission == "Admin" %}
                 <td>
-                    <a href="/borrow/edit/{{ borrowed_book.borrow_id }}">编辑</a>|
+                    <a class="mx-1" href="/borrow/edit/{{ borrowed_book.borrow_id }}">编辑</a>
                     <a class="delete" href="/borrow/delete/{{ borrowed_book.borrow_id }}">删除</a>
                 </td>
                 {% endif %}
