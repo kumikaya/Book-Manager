@@ -3,22 +3,17 @@
 <div>
     <h2>搜索</h2>
     <hr>
-    <form class="d-flex justify-content-center" action="/search/s" method="get">
-        <select class="px-4 form-select mx-2" name="search_type">
-            <option value="books">图书</option>
-            <option value="users">用户</option>
-        </select>
-        <input class="col-6 mx-2 form-control" type="search" placeholder="搜索关键词" aria-label="搜索关键词" name="keyword">
-        <button class="col-2 mx-2 btn btn-outline-primary" type="submit">搜索</button>
+    <form class="d-flex justify-content-center flex-column flex-lg-row" action="/search/s" method="get">
+        <div class="input-group col-12 col-lg-8 input-group-lg mb-3 mb-lg-0">
+            <div class="input-group-prepend">
+                <select class="btn btn-outline-secondary dropdown-toggle px-4" name="search_type">
+                    <option class="dropdown-item bg-light" value="books">图书</option>
+                    <option class="dropdown-item bg-light" value="users">用户</option>
+                </select>
+            </div>
+            <input class="form-control" type="search" placeholder="搜索关键词" aria-label="搜索关键词" name="keyword">
+        </div>
+        <button class="col-12 col-lg-2 mx-2 btn btn-outline-primary btn-lg" type="submit">搜索</button>
     </form>
-    {#
-    <hr>
-    {% if result_type %}
-    <div class="col-12">
-        {% if result_type == "books" %}
-        {% include "books/list.html.tera" %}
-        {% endif %}
-    </div>
-    {% endif %} #}
 </div>
 {% endblock content %}

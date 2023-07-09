@@ -13,6 +13,7 @@ pub mod login;
 pub mod logout;
 pub mod search;
 pub mod users;
+pub mod background;
 
 const DEFAULT_NUMBER_PER_PAGE: u64 = 8;
 
@@ -71,6 +72,9 @@ fn basic_context(session: &Session) -> Result<tera::Context, Error> {
     if let Some(flash) = session.get::<crate::FlashData>("flash")? {
         session.remove("flash");
         ctx.insert("flash", &flash);
+    }
+    if let Some(switch) = session.get::<u32>("background")? {
+        ctx.insert("background", &switch);
     }
     Ok(ctx)
 }

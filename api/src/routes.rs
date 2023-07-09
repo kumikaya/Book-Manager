@@ -1,7 +1,7 @@
 use crate::{
     handlers::{
         books::*, borrow::*, emails::*, index::*, login::*, logout::*, not_found, search::*,
-        users::*, reload_templates,
+        users::*, reload_templates, background::background_handler,
     },
     permission::Permission,
 };
@@ -14,6 +14,7 @@ pub fn general_route(cfg: &mut web::ServiceConfig) {
     cfg.default_service(web::route().to(not_found))
         .service(Files::new("/static", "./api/static"))
         .route("/", web::get().to(index_handler))
+        .route("/bg", web::get().to(background_handler))
         .service(
             web::resource("/login")
                 .route(web::get().to(login_handler))

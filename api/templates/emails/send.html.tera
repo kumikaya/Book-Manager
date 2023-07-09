@@ -6,7 +6,7 @@
     <form action="/emails/send" method="post">
         <div class="mb-3">
             <label for="category" class="form-label">邮件类型：</label>
-            <select id="category" name="category" class="form-control col-2">
+            <select id="category" name="category" class="form-control col-12">
                 <option value="Regular" selected>普通邮件</option>
                 <option value="ToAdminBroadcast">至管理员广播</option>
                 <option value="ToUserBroadcast">至用户广播</option>
@@ -15,18 +15,17 @@
         <div class="mb-3">
             <label for="recipient" class="form-label">收件人：</label>
             <input type="text" id="recipient" name="recipient" value="{% if recipient %} {{ recipient }} {% endif %}"
-                class="form-control col-3" required>
+                class="form-control col-12" required>
         </div>
         <div class="mb-3">
             <label for="subject" class="form-label">主题：</label>
-            <input type="text" id="subject" name="subject" class="form-control col-3" required>
+            <input type="text" id="subject" name="subject" class="form-control col-12" required>
         </div>
         <div class="mb-3">
             <label for="content" class="form-label">正文：</label>
-            <textarea id="content" name="content" rows="8" class="form-control col-6" required></textarea>
+            <textarea id="content" name="content" rows="8" class="form-control col-12" required></textarea>
         </div>
-        <input type="submit" class="btn btn-outline-primary col-1 mx-2" value="发送" />
-
+        <input type="submit" class="btn btn-outline-primary col-12 mx-2" value="发送" />
     </form>
     <script>
         document.getElementById('category').addEventListener('change', function () {
@@ -41,4 +40,5 @@
         });
     </script>
 </div>
+
 {% endblock content %}

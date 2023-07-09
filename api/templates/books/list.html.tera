@@ -1,6 +1,6 @@
 {% import "macros.html.tera" as macros %}
 {% extends "layout.html.tera" %} {% block content %}
-<div>
+<div class="table-responsive-sm">
     <h2>书籍列表</h2>
     <table class="table table-hover">
         <tbody>

@@ -40,7 +40,8 @@
     </table>
     <hr>
     <h3>借阅书籍</h3>
-    <div class="col-4">
+    <hr>
+    <div class="col-12 col-lg-4">
         {% if user_permission == "Admin" %}
         <form action="/borrow/{{ book.id }}" method="post">
             <div class="mb-3">
@@ -62,6 +63,6 @@
             <input type="submit" class="btn btn-outline-primary" value="申请借阅">
         </form>
         {% endif %}
-    </div>
+    </div>    
 </div>
 {% endblock content %}

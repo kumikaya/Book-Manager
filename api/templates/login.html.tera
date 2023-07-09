@@ -3,19 +3,28 @@
 <div>
     <h2>登录</h2>
     <hr>
-    <div class="col-4">
+    <div class="container">
         <form action="/login" method="post">
-            <div class="mb-3">
-                <label for="username" class="form-label">用户名：</label>
-                <input type="text" id="username" name="username" class="form-control" required>
+            <div class="row justify-content-center">
+                <div class="col-12 col-md-6 col-lg-4">
+                    <div class="mb-3">
+                        <label for="username" class="form-label">用户名：</label>
+                        <input type="text" id="username" name="username" class="form-control" required>
+                    </div>
+                    <div class="mb-3">
+                        <label for="password" class="form-label">密码：</label>
+                        <input type="password" id="password" name="password" class="form-control" required>
+                    </div>
+                    <div class="mb-3">
+                        <input type="submit" class="btn btn-outline-primary btn-block" value="登录">
+                    </div>
+                    <div class="mb-3 text-center">
+                        <span>还没有账户？<a href="/register">点击这里注册</a></span>
+                    </div>
+                </div>
             </div>
-            <div class="mb-3">
-                <label for="password" class="form-label">密码：</label>
-                <input type="password" id="password" name="password" class="form-control" required>
-            </div>
-            <input type="submit" class="btn btn-outline-primary col-3" value="登录">
-            <span>还没有账户？<a href="/register">点击这里注册</a></span>
         </form>
     </div>
 </div>
+
 {% endblock content %}

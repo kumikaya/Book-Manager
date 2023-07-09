@@ -3,22 +3,27 @@
 <div>
     <h2>注册</h2>
     <hr>
-    <div class="col-4">
+    <div class="container">
         <form action="/register" method="post">
-            <div class="mb-3">
-                <label for="nickname" class="form-label">昵称：</label>
-                <input type="text" id="nickname" name="nickname" class="form-control" required>
+            <div class="col-12 col-md-6 col-lg-4">
+                <div class="mb-3">
+                    <label for="nickname" class="form-label">昵称：</label>
+                    <input type="text" id="nickname" name="nickname" class="form-control" required>
+                </div>
+                <div class="mb-3">
+                    <label for="username" class="form-label">用户名：</label>
+                    <input type="text" id="username" name="username" class="form-control" required>
+                </div>
+                <div class="mb-3">
+                    <label for="password" class="form-label">密码：</label>
+                    <input type="password" id="password" name="password" class="form-control" required>
+                </div>
+                <input type="submit" class="btn btn-outline-primary btn-block" value="注册">
+                <div class="mb-3 text-center">
+                    <span>已有账户？<a href="/login">点击这里登录</a></span>
+                </div>
             </div>
-            <div class="mb-3">
-                <label for="username" class="form-label">用户名：</label>
-                <input type="text" id="username" name="username" class="form-control" required>
-            </div>
-            <div class="mb-3">
-                <label for="password" class="form-label">密码：</label>
-                <input type="password" id="password" name="password" class="form-control" required>
-            </div>
-            <input type="submit" class="btn btn-outline-primary col-3" value="注册">
-            <span>已有账户？<a href="/login">点击这里登录</a></span>
+
         </form>
     </div>
 </div>

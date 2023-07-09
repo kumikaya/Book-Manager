@@ -1,29 +1,34 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="zh-cn">
 
 <head>
     <meta charset="utf-8" />
     <title>Book Manager - {{ title }}</title>
-    <meta name="description" content="Actix - SeaOrm integration example" />
+    <meta name="description" content="图书管理系统" />
     <meta name="author" content="Sam Samai" />
-    <meta name="viewport" content="width=device-width, initial-scale=1" />
-
-    <link href="//fonts.googleapis.com/css?family=Raleway:400,300,600" rel="stylesheet" type="text/css" />
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css">
-    {#
-    <link rel="stylesheet" href="/static/css/skeleton.css" /> #}
     <link rel="stylesheet" href="/static/css/style.css" />
     <link rel="icon" type="image/png" href="/static/images/favicon.png" />
-
-    {% block extra_css %}{% endblock extra_css %}
+    {% block css %}{% endblock css %}
 </head>
 
-<body>
-    <nav class="navbar navbar-expand-lg navbar-light bg-light">
+<body class="bg-light">
+    {% if background and background % 2 != 0 %}
+    <div class="background">
+        <img src="/static/images/background{{ background % 2 }}.jpg" alt="background" />
+    </div>
+    {% endif %}
+    <!-- 导航 -->
+    <nav class="navbar navbar-expand-lg navbar-light py-0">
         <div class="container-fluid">
             <a class="navbar-brand" href="/">图书管理系统</a>
-            <div class="justify-content-end">
-                <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+            <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarContent"
+                aria-controls="navbarContent" aria-expanded="false" aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse justify-content-end" id="navbarContent">
+                <ul class="navbar-nav">
                     {% if user_permission and user_permission == "Admin" %}
                     <li class="nav-item">
                         <a class="nav-link" href="/control/reload_templates">RELOAD</a>
@@ -68,6 +73,7 @@
             </div>
         </div>
     </nav>
+
     {% if flash %}
     <div class="flash-container">
         <div id="message" class="alert alert-{{ flash.kind }} collapse" role="alert">
@@ -75,8 +81,11 @@
         </div>
     </div>
     {% endif %}
-    <div class="container">
-        <br>
+
+    <a class="bg-btn btn btn-light" href="/bg"></a>
+
+    <!-- 内容 -->
+    <div class="container mt-4">
         {% block content %}{% endblock content %}
     </div>
 
@@ -85,8 +94,36 @@
     <!-- Bootstrap Bundle with Popper -->
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.6.2/dist/js/bootstrap.min.js"></script>
     {% block script %}{% endblock script %}
-    {% block extra_js %}{% endblock extra_js %}
 </body>
+
+<style>
+    .bg-btn {
+        position: absolute;
+        left: 10px;
+        bottom: 10px;
+        background-color: transparent;
+        border: none;
+        border-radius: 50%;
+        width: 40px;
+        height: 40px;
+    }
+
+    .bg-btn:hover {
+        background-color: rgba(0, 0, 0, 0.1);
+    }
+
+    .background {
+        position: fixed;
+        z-index: -1;
+        opacity: 0.6;
+    }
+
+    .background img {
+        width: 100vw;
+        height: 100vh;
+        object-fit: cover;
+    }
+</style>
 
 <script>
     $(document).ready(function () {
@@ -97,6 +134,13 @@
         setTimeout(function () {
             $('#message').fadeOut('slow');
         }, 5000);
+    });
+    $("#customCheck").change(function () {
+        if (this.checked) {
+            $("body").removeClass("unchecked").addClass("checked");
+        } else {
+            $("body").removeClass("checked").addClass("unchecked");
+        }
     });
 
 </script>
