@@ -1,5 +1,7 @@
 # BookManager
 
+![screenshot](screenshot.png)
+
 ## 运行
 
 请按照以下步骤在您的系统上运行BookManager：
