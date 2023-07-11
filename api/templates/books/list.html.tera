@@ -1,6 +1,6 @@
 {% import "macros.html.tera" as macros %}
 {% extends "layout.html.tera" %} {% block content %}
-<div class="table-responsive-sm">
+<div class="table-responsive">
     <h2>书籍列表</h2>
     <table class="table table-hover">
         <tbody>
@@ -19,19 +19,17 @@
             </thead>
             {% for book in books %}
             <tr class="book list" onclick="window.location='/books/{{ book.id }}';">
-                <td>{{ book.name }}</td>
-                <td>{{ book.author }}</td>
-                <td>{{ book.publisher }}</td>
-                <td>{{ book.publish_year }}</td>
-                {# <td>{{ book.isbn }}</td> #}
-                <td>{{ book.copies }}</td>
+                <td data-label="书名">{{ book.name }}</td>
+                <td data-label="作者">{{ book.author }}</td>
+                <td data-label="出版社">{{ book.publisher }}</td>
+                <td data-label="出版年份">{{ book.publish_year }}</td>
+                <td data-label="副本数量">{{ book.copies }}</td>
                 {% if user_permission == "Admin" %}
-                <td>
+                <td data-label="操作">
                     <a class="mx-1" href="/books/edit/{{ book.id }}">编辑</a>
                     <a class="delete" href="/books/delete/{{ book.id }}">删除</a>
                 </td>
                 {% endif %}
-
             </tr>
             {% endfor %}
         </tbody>
@@ -40,9 +38,7 @@
         </tfoot>
     </table>
     {% if user_permission == "Admin" %}
-    <a href="/books/new">
-        <button class="btn btn-outline-primary">添加书籍</button>
-    </a>
+    <a href="/books/new" class="btn btn-outline-primary">添加书籍</a>
     {% endif %}
 </div>
 {% endblock content %}

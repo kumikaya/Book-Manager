@@ -27,13 +27,13 @@
             {% for borrowed_book_info in borrowed_books_info %}
             <tr class="borrowed_book list {% if borrowed_book_info.return_date | is_overdue %} highlight {% endif %}"
                 onclick="window.location='/books/{{ borrowed_book_info.book_id }}';">
-                <td>{{ borrowed_book_info.book_name }}</td>
-                <td>{{ borrowed_book_info.book_author }}</td>
-                <td>{{ borrowed_book_info.isbn }}</td>
-                <td>{{ borrowed_book_info.borrow_date }}</td>
-                <td>{{ borrowed_book_info.return_date }}</td>
+                <td data-label="书名">{{ borrowed_book_info.book_name }}</td>
+                <td data-label="作者">{{ borrowed_book_info.book_author }}</td>
+                <td data-label="ISBN">{{ borrowed_book_info.isbn }}</td>
+                <td data-label="借阅日期">{{ borrowed_book_info.borrow_date }}</td>
+                <td data-label="应还日期">{{ borrowed_book_info.return_date }}</td>
                 {% if user_permission == "Admin" %}
-                <td><a class="mx-1" href="/borrow/edit/{{ borrowed_book_info.borrow_id }}">编辑</a>
+                <td data-label="操作"><a class="mx-1" href="/borrow/edit/{{ borrowed_book_info.borrow_id }}">编辑</a>
                     <a class="delete" href="/borrow/delete/{{ borrowed_book_info.borrow_id }}">删除</a>
                 </td>
                 {% endif %}

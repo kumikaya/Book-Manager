@@ -7,7 +7,7 @@
     <meta name="description" content="图书管理系统" />
     <meta name="author" content="Sam Samai" />
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css">
+    <link rel="stylesheet" href="/static/css/bootstrap.min.css">
     <link rel="stylesheet" href="/static/css/style.css" />
     <link rel="icon" type="image/png" href="/static/images/favicon.png" />
     {% block css %}{% endblock css %}
@@ -90,9 +90,9 @@
     </div>
 
     <!-- jQuery -->
-    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.7.0/jquery.min.js"></script>
+    <script src="/static/js/jquery.min.js"></script>
     <!-- Bootstrap Bundle with Popper -->
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.6.2/dist/js/bootstrap.min.js"></script>
+    <script src="/static/js/bootstrap.min.js"></script>
     {% block script %}{% endblock script %}
 </body>
 

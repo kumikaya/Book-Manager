@@ -15,10 +15,10 @@
             </thead>
             {% for email in emails %}
             <tr class="emails list" onclick="window.location='/emails/{{ email.id }}';">
-                <td>{{ email.sender_name }}</td>
-                <td>{{ email.subject }}</td>
-                <td>{{ email.date_time|date(format="%Y-%m-%d %H:%M") }}</td>
-                <td><a class="mx-1" href="/emails/send?recipient={{ email.sender_name }}">回复</a>
+                <td data-label="发件人">{{ email.sender_name }}</td>
+                <td data-label="主题">{{ email.subject }}</td>
+                <td data-label="日期">{{ email.date_time|date(format="%Y-%m-%d %H:%M") }}</td>
+                <td data-label="操作"><a class="mx-1" href="/emails/send?recipient={{ email.sender_name }}">回复</a>
                     <a class="delete" href="/emails/delete/{{ email.id }}">删除</a>
                 </td>
             </tr>

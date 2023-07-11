@@ -27,9 +27,9 @@
             <label for="copies" class="form-label">副本数量：</label>
             <input type="number" name="copies" id="copies" value="" autofocus class="form-control" required />
         </div>
-        <div class="d-flex justify-content-start">
-            <input type="submit" class="btn btn-outline-primary col-1 mx-2" value="保存" />
-            <a href="/books" class="btn btn-outline-secondary col-1 mx-2">关闭</a>
+        <div class="d-flex flex-column flex-lg-row">
+            <input type="submit" class="btn btn-outline-primary col-12 col-lg-1 my-2 my-lg-0 mx-lg-2" value="保存" />
+            <a href="/books" class="btn btn-outline-secondary col-12 col-lg-1 my-2 my-lg-0 mx-lg-2">关闭</a>
         </div>
     </form>
 </div>

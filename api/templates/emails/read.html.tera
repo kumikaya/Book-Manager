@@ -11,10 +11,10 @@
     <p>{{ email_detail.content }}</p>
     <hr>
     {% if user_id != email_detail.sender_id %}
-    <a href="/emails/send?recipient={{ email_detail.sender_name }}" class="btn btn-outline-primary">回复</a>
+    <a href="/emails/send?recipient={{ email_detail.sender_name }}" class="btn btn-outline-primary col-12 col-lg-1 my-2 my-lg-0 mx-lg-2">回复</a>
     {% else %}
-    <a href="/emails/send?recipient={{ email_detail.recipient_name }}" class="btn btn-outline-primary">继续</a>
+    <a href="/emails/send?recipient={{ email_detail.recipient_name }}" class="btn btn-outline-primary col-12 col-lg-1 my-2 my-lg-0 mx-lg-2">继续</a>
     {% endif %}
-    <a href="/emails/delete/{{ email_detail.id }}" class="btn btn-outline-danger">删除</a>
+    <a href="/emails/delete/{{ email_detail.id }}" class="btn btn-outline-danger col-12 col-lg-1 my-2 my-lg-0 mx-lg-2">删除</a>
 </div>
 {% endblock content %}

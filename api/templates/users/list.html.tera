@@ -18,13 +18,13 @@
             </thead>
             {% for user in users %}
             <tr class="user list" onclick="window.location='/users/{{ user.id }}';">
-                <td>{{ user.id }}</td>
-                <td>{{ user.name }}</td>
-                <td>{{ user.nickname }}</td>
-                <td>{{ user.permission }}</td>
-                <td>{{ user.registration_date }}</td>
+                <td data-label="ID">{{ user.id }}</td>
+                <td data-label="用户名">{{ user.name }}</td>
+                <td data-label="昵称">{{ user.nickname }}</td>
+                <td data-label="权限组">{{ user.permission }}</td>
+                <td data-label="注册时间">{{ user.registration_date }}</td>
                 {% if user_permission == "Admin" %}
-                <td>
+                <td data-label="操作">
                     <a class="delete" href="/users/delete/{{ user.id }}">删除</a>
                 </td>
                 {% endif %}

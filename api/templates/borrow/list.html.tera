@@ -19,14 +19,14 @@
             </thead>
             {% for borrowed_book in borrowed_books %}
             <tr class="borrowed_book list">
-                <td>{{ borrowed_book.user_nickname }}({{ borrowed_book.user_name }})</td>
-                <td>{{ borrowed_book.book_name }}</td>
-                <td>{{ borrowed_book.isbn }}</td>
-                <td>{{ borrowed_book.borrow_date }}</td>
+                <td data-label="用户">{{ borrowed_book.user_nickname }}({{ borrowed_book.user_name }})</td>
+                <td data-label="书名">{{ borrowed_book.book_name }}</td>
+                <td data-label="ISBN">{{ borrowed_book.isbn }}</td>
+                <td data-label="借阅时间">{{ borrowed_book.borrow_date }}</td>
                 {# <td>{{ book.isbn }}</td> #}
-                <td>{{ borrowed_book.return_date }}</td>
+                <td data-label="返还时间">{{ borrowed_book.return_date }}</td>
                 {% if user_permission == "Admin" %}
-                <td>
+                <td data-label="操作">
                     <a class="mx-1" href="/borrow/edit/{{ borrowed_book.borrow_id }}">编辑</a>
                     <a class="delete" href="/borrow/delete/{{ borrowed_book.borrow_id }}">删除</a>
                 </td>

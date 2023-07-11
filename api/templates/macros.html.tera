@@ -1,5 +1,5 @@
 {% macro paginator(path) %}
-<tr>
+<tr class="paginator">
     <td class="text-center my-2" colspan="3">
         {% if page == 1 %}
         <span class="mx-2">上一页</span>
