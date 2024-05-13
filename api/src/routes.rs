@@ -10,7 +10,7 @@ use actix_files::Files;
 use actix_web::web;
 use entity::AccessPermission;
 
-pub fn general_route(cfg: &mut web::ServiceConfig) {
+pub fn general_routes(cfg: &mut web::ServiceConfig) {
     cfg.default_service(web::route().to(not_found))
         .service(Files::new("/static", "./api/static"))
         .route("/", web::get().to(index_handler))

@@ -16,7 +16,7 @@ use std::{env, fs::File, io::BufReader};
 use tera::Tera;
 use std::sync::RwLock;
 
-use crate::routes::general_route;
+use crate::routes::general_routes;
 
 #[derive(Debug)]
 pub struct AppState {
@@ -61,11 +61,11 @@ fn get_secret_key() -> Key {
 
 #[actix_web::main]
 async fn start() -> std::io::Result<()> {
-    std::env::set_var("RUST_LOG", "debug");
-    tracing_subscriber::fmt::init();
-
     // get env vars
     dotenvy::dotenv().ok();
+    
+    tracing_subscriber::fmt::init();
+
     let db_url = env::var("DATABASE_URL").expect("DATABASE_URL is not set in .env file");
     let host = env::var("HOST").expect("HOST is not set in .env file");
     let port = env::var("PORT").expect("PORT is not set in .env file");
@@ -103,7 +103,7 @@ async fn start() -> std::io::Result<()> {
             ))
             .app_data(web::Data::new(state))
             .wrap(middleware::Logger::default()) // enable logger
-            .configure(general_route)
+            .configure(general_routes)
     });
 
     // 配置 SSL
@@ -111,7 +111,7 @@ async fn start() -> std::io::Result<()> {
 
     server = match listenfd.take_tcp_listener(0)? {
         Some(listener) => server.listen(listener)?,
-        None => server.bind_rustls(&server_url, config)?,
+        None => server.bind_rustls_021(&server_url, config)?,
     };
 
     println!("Starting server at {server_url}");
@@ -129,7 +129,7 @@ fn load_ssl_config() -> rustls::ServerConfig {
         &mut BufReader::new(File::open(format!("{}/certificate.crt", certificate_dir)).unwrap());
     let key_file = &mut BufReader::new(File::open(format!("{}/key.pem", certificate_dir)).unwrap());
     let cert = rustls_pemfile::certs(cert_file).unwrap();
-    let cert_chain: Vec<_> = cert.into_iter().map(|v| Certificate(v)).collect();
+    let cert_chain: Vec<_> = cert.into_iter().map(Certificate).collect();
     let key = rustls_pemfile::pkcs8_private_keys(key_file).unwrap()[0].clone();
     let key_der = PrivateKey(key);
 

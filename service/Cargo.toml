@@ -9,9 +9,10 @@ edition = "2021"
 entity = { path = "../entity" }
 paste = "1.0"
 chrono = { version = "0.4" }
+sea-query = "0.30"
 
 [dependencies.sea-orm]
-version = "0.11"
+version = "0.12"
 features = [
     "debug-print",
     "runtime-tokio-rustls",
@@ -19,7 +20,7 @@ features = [
 ]
 
 [dev-dependencies]
-tokio = { version = "1.28", features = ["macros", "rt"] }
+tokio = { version = "1", features = ["macros", "rt"] }
 
 [features]
 mock = ["sea-orm/mock"]
